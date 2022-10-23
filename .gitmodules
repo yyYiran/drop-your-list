@@ -1,0 +1,3 @@
+[submodule "drop-your-list"]
+	path = drop-your-list
+	url = https://github.com/yyYiran/drop-your-list.git

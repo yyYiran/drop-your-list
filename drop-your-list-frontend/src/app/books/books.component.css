@@ -1,0 +1,100 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+#addBook {
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  width: fit-content;
+  text-align: center;
+  background-color: #22315c;
+  border-radius: 5px;
+  margin-top: 10px;
+  align-self: center;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#addBook:hover,
+#search:hover,
+#clear-search:hover,
+#subscribe:enabled:hover {
+  cursor: pointer;
+}
+
+#subscribe {
+  background-color: darkred;
+  color: white;
+  font-weight: bold;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 10px;
+  align-self: flex-end;
+  margin: 5px;
+}
+
+#subscribe:disabled,
+#addBook:disabled {
+  background-color: gray;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+#search {
+  padding-inline-start: 20px;
+  font-size: large;
+}
+
+#clear-search {
+  position: absolute;
+  padding: 5px;
+  right: 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px 20px;
+  padding: 10px;
+}
+
+.item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.image-container {
+  margin-right: 0px;
+  background-color: beige;
+  height: 200px;
+}
+.image-container img {
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.title {
+  font-size: large;
+  border-bottom: 1px solid silver;
+  padding: 1em;
+}
+
+.isbn {
+  color: silver;
+}
+#dialogBtn {
+  display: none;
+}

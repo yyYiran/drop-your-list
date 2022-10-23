@@ -1,0 +1,21 @@
+.navBar {
+  background-color: #2a623d;
+  padding: 10px;
+}
+
+.body {
+  background-color: beige;
+  padding: 10px;
+}
+
+.navBtn > a {
+  color: white;
+  padding-right: 10px;
+  font-weight: 500;
+}
+
+.loginMsg {
+  color: yellow;
+  padding-right: 10px;
+  font-weight: 500;
+}

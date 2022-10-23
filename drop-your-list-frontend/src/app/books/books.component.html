@@ -1,0 +1,149 @@
+<button id="findbtn">find book by isbn</button>
+<button type="button" id="dialogBtn" data-toggle="modal">click me</button>
+<div class="main">
+  <button
+    id="addBook"
+    (click)="onOpenModal(null, 'add')"
+    [disabled]="currentusername == null"
+  >
+    Add book
+  </button>
+  <div class="grid">
+    <div *ngFor="let book of books" class="item">
+      <div class="image-container">
+        <img
+          [src]="
+            book.imageUrl == ''
+              ? 'https://www.previewsworld.com/SiteImage/MainImage/STL138535.jpg'
+              : book.imageUrl
+          "
+          alt="Book"
+        />
+      </div>
+      <div class="title">
+        <b>{{ book?.title }}</b>
+      </div>
+      <div class="author">{{ book?.author }}</div>
+      <div class="isbn">{{ book?.isbn }}</div>
+      <div *ngIf="currentusername != null">
+        <button
+          id="subscribe"
+          (click)="onSubscribe(book!.isbn)"
+          *ngIf="!currentMyBooks.includes(book!.title); else unsubscribe"
+        >
+          Subscribe
+        </button>
+        <ng-template #unsubscribe>
+          <button id="unsubscribe" (click)="onUnsubscribe(book!.isbn)">
+            Unsubscribe
+          </button>
+        </ng-template>
+      </div>
+      <div class="subscribers">
+        <span class="subscriber">{{ book.subscribers }}</span>
+      </div>
+      <div class="userList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Book Modal -->
+<div
+  class="modal fade"
+  id="addBookModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addBookModalLabel"
+  aria-hidden="true"
+  (keyup)="onEnter($event)"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBookModalLabel">Add book</h5>
+        <!-- close X -->
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body info-container">
+        <div class="image-modal">
+          <img src="../../assets/PH_IMG.png" alt="Book" />
+        </div>
+        <form
+          #addForm="ngForm"
+          (ngSubmit)="onSubmitAddBook(addForm)"
+          id="addForm"
+        >
+          <div class="form-group">
+            <label for="title">Title</label>
+            <div class="search-container">
+              <input
+                type="text"
+                name="title"
+                ngModel
+                #k="ngModel"
+                id="title"
+                class="form-control"
+              />
+              <span id="clear-search" (click)="onClear()">&times;</span>
+              <span id="search" (click)="onSearch(k.value, addForm)">🔍</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input
+              type="text"
+              name="author"
+              ngModel
+              id="author"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="isbn">ISBN-13</label>
+            <input
+              name="isbn"
+              ngModel
+              id="isbn"
+              class="form-control"
+              required
+            />
+            <input
+              type="text"
+              name="imageUrl"
+              ngModel
+              id="imageUrl"
+              class="form-control"
+              style="display: none"
+            />
+          </div>
+          <!-- close or save -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="close-form"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              (click)="onClear()"
+            >
+              Close
+            </button>
+            <button
+              [disabled]="addForm.invalid"
+              type="submit"
+              class="btn btn-primary"
+            >
+              Save changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

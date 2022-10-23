@@ -1,0 +1,26 @@
+<div class="navBar">
+  <span class="navBtn"
+    ><a
+      routerLink="/home"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >Home</a
+    ></span
+  >
+  <span class="navBtn" id="mylist"
+    ><a routerLink="/me" routerLinkActive="active" ariaCurrentWhenActive="page"
+      >My Booklist</a
+    ></span
+  >
+
+  <span *ngIf="currentusername != null; else loginBtn">
+    <span class="loginMsg">You are logged in as '{{ currentusername }}'</span>
+    <button class="navBtn" (click)="logout()">Logout</button>
+  </span>
+  <ng-template #loginBtn
+    ><button class="navBtn" (click)="login()">Login</button>
+  </ng-template>
+</div>
+<div class="body">
+  <router-outlet></router-outlet>
+</div>
